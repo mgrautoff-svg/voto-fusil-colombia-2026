@@ -1,4 +1,4 @@
-# No es voto fusil. Es voto pistola con silenciador.
+﻿# No es voto fusil. Es voto pistola con silenciador.
 
 ## 1. La acusación
 
@@ -34,7 +34,7 @@ La acusación de “voto fusil” reduce décadas de construcción territorial a
 
 La pregunta para el nuevo gobierno no es únicamente quién presionó a quién el día de la elección. Es si va a gobernar esos territorios con instituciones legítimas o seguirá administrando una ausencia cuyos efectos políticos ya son visibles.
 
-*Datos, código y metodología: github.com/mgrautoff-svg/Reforma-UIAF*
+*Datos, código y metodología: github.com/mgrautoff-svg/voto-fusil-colombia-2026*
 
 ---
 

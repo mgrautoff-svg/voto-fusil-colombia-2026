@@ -1,4 +1,4 @@
-# Responsabilidad: producir la visualizacion DiD para lector general y
+﻿# Responsabilidad: producir la visualizacion DiD para lector general y
 # actualizar la pieza editorial usando resultados ya calculados.
 # Prerequisitos: ejecutar antes 05_exterior_grupo_control.R.
 
@@ -171,7 +171,7 @@ fig_did <- plot_ly(
         yref = "paper",
         text = paste0(
           "Fuente y construcción: Manfred Grautoff · Sistema E4, Registraduría, ACLED · ",
-          "github.com/mgrautoff-svg/Reforma-UIAF"
+          "github.com/mgrautoff-svg/voto-fusil-colombia-2026"
         ),
         showarrow = FALSE,
         xanchor = "left",
@@ -250,7 +250,7 @@ La acusación de “voto fusil” reduce décadas de construcción territorial a
 
 La pregunta para el nuevo gobierno no es únicamente quién presionó a quién el día de la elección. Es si va a gobernar esos territorios con instituciones legítimas o seguirá administrando una ausencia cuyos efectos políticos ya son visibles.
 
-*Datos, código y metodología: github.com/mgrautoff-svg/Reforma-UIAF*
+*Datos, código y metodología: github.com/mgrautoff-svg/voto-fusil-colombia-2026*
 
 ---
 
