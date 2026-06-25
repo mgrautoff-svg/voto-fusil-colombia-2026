@@ -11,16 +11,26 @@ suppressPackageStartupMessages({
   library(sandwich)
 })
 
-# --- Paso 1: cargar insumos ya verificados -----------------------------------
-source(here::here("subproyectos/voto_fusil/scripts/01_datos.R"))
+# --- Paso 1: recibir insumos ya verificados ----------------------------------
+objetos_requeridos <- c("panel", "acled_data", "seg_vuelta", "sv22", "m5")
+objetos_faltantes <- objetos_requeridos[
+  !vapply(objetos_requeridos, exists, logical(1), inherits = TRUE)
+]
+if (length(objetos_faltantes) > 0L) {
+  stop(
+    "02_analisis.R requiere ejecutar 01_datos.R antes. Faltan: ",
+    paste(objetos_faltantes, collapse = ", "),
+    call. = FALSE
+  )
+}
 
 pad_dane <- function(x) sprintf("%05d", suppressWarnings(as.integer(as.character(x))))
 
 # --- Paso 2: indice de exposicion armada -------------------------------------
 ventana_meses <- list(
-  subperiodo_1 = list(anio = 2025, meses = 11:12),  # nov-dic 2025
-  subperiodo_2 = list(anio = 2026, meses = 1:3),    # ene-mar 2026
-  subperiodo_3 = list(anio = 2026, meses = 4:5)     # abr-may 2026
+  subperiodo_1 = list(anio = 2025, meses = 11:12),
+  subperiodo_2 = list(anio = 2026, meses = 1:3),
+  subperiodo_3 = list(anio = 2026, meses = 4:5)
 )
 
 asignar_subperiodo <- function(anio, mes) {
@@ -32,11 +42,7 @@ asignar_subperiodo <- function(anio, mes) {
   )
 }
 
-fuente_por_archivo <- c(
-  "colombia_hrp_political_violence_events_and_fatalities_by_month-year_as-of-17jun2026.xlsx" = "pv",
-  "colombia_hrp_civilian_targeting_events_and_fatalities_by_month-year_as-of-17jun2026.xlsx" = "ct",
-  "colombia_hrp_demonstration_events_by_month-year_as-of-17jun2026.xlsx" = "dm"
-)
+fuente_por_archivo <- setNames(names(config_voto_fusil$fuentes_acled), config_voto_fusil$fuentes_acled)
 
 agregados_por_fuente <- list()
 for (nombre_archivo in names(acled_data)) {
@@ -83,7 +89,9 @@ indice_exposicion <- universo_municipios |>
   mutate(across(-cod_dane, ~ replace_na(.x, 0))) |>
   mutate(
     idx_exposicion = pv_total + ct_total,
-    alta_exposicion = idx_exposicion > quantile(idx_exposicion, 0.75, na.rm = TRUE)
+    alta_exposicion = idx_exposicion > quantile(
+      idx_exposicion, config_voto_fusil$cuantil_alta_exposicion, na.rm = TRUE
+    )
   )
 
 stopifnot(nrow(indice_exposicion) == n_distinct(universo_municipios$cod_dane))
@@ -114,7 +122,7 @@ stopifnot(nrow(panel_final) == n_antes_m5)
 stopifnot(!anyNA(panel_final$tipologia_d2))
 
 # --- Paso 4: verificacion de integridad --------------------------------------
-stopifnot(nrow(panel_final) == 1122L)
+stopifnot(nrow(panel_final) == config_voto_fusil$n_municipios)
 
 cat("=== DISTRIBUCION alta_exposicion ===\n")
 print(table(panel_final$alta_exposicion))
@@ -233,7 +241,7 @@ write.csv(
 # usa subproyectos/electoral_2026_segunda_vuelta/scripts/05_migracion_regresion_ecologica.R.
 # Es una LECTURA del supercubo hacia electoral (permitida); el supercubo no se
 # modifica ni recibe nada de voto_fusil.
-supercubo_path <- here::here("data_clean/supercubo_municipio_anio_v3.rds")
+supercubo_path <- here::here(config_voto_fusil$rutas$supercubo)
 stopifnot(file.exists(supercubo_path))
 
 controles <- readRDS(supercubo_path) |>
@@ -296,9 +304,7 @@ write.csv(
 # calculadas y validadas en el pipeline de la columna anterior; no se
 # reconstruyen aqui desde votantes/censo (el panel limpio NO tiene datos de
 # primera vuelta 2026 -- verificado, son solo 2018/2022).
-metricas_path <- here::here(
-  "subproyectos/electoral_2026_segunda_vuelta/outputs/mapas/tablas/metricas_mapas_electorales_2026.csv"
-)
+metricas_path <- here::here(config_voto_fusil$rutas$metricas_2026)
 stopifnot(file.exists(metricas_path))
 
 metricas_2026 <- read_csv(metricas_path, show_col_types = FALSE) |>

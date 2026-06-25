@@ -10,13 +10,13 @@ suppressPackageStartupMessages({
 cat("=== TEST: PREREQUISITOS voto_fusil ===\n")
 
 archivos_requeridos <- c(
-  panel = "data_raw/electoral/base_electoral_2026_panel_limpio.csv",
-  acled_pv = "data_raw/acled/colombia_hrp_political_violence_events_and_fatalities_by_month-year_as-of-17jun2026.xlsx",
-  acled_ct = "data_raw/acled/colombia_hrp_civilian_targeting_events_and_fatalities_by_month-year_as-of-17jun2026.xlsx",
-  acled_dm = "data_raw/acled/colombia_hrp_demonstration_events_by_month-year_as-of-17jun2026.xlsx",
-  seg_vuelta = "subproyectos/electoral_2026_segunda_vuelta/outputs/supercubo/electoral_2026_segunda_vuelta_municipio.csv",
-  sv22 = "subproyectos/electoral_2026_primera_vuelta/outputs/puestos/tablas/segunda_vuelta_2022_municipios.csv",
-  puente = "subproyectos/electoral_2026_segunda_vuelta/outputs/supercubo/tabla_puente_registraduria_dane.csv"
+  panel = config_voto_fusil$rutas$panel_electoral,
+  acled_pv = file.path(config_voto_fusil$rutas$acled, config_voto_fusil$fuentes_acled[["pv"]]),
+  acled_ct = file.path(config_voto_fusil$rutas$acled, config_voto_fusil$fuentes_acled[["ct"]]),
+  acled_dm = file.path(config_voto_fusil$rutas$acled, config_voto_fusil$fuentes_acled[["dm"]]),
+  seg_vuelta = config_voto_fusil$rutas$segunda_vuelta_2026,
+  sv22 = config_voto_fusil$rutas$segunda_vuelta_2022,
+  puente = config_voto_fusil$rutas$puente_dane
 )
 
 for (nombre in names(archivos_requeridos)) {
@@ -30,8 +30,8 @@ cat("OK: los 7 archivos requeridos existen.\n")
 # --- Panel electoral limpio ---------------------------------------------------
 panel <- read_csv(here::here(archivos_requeridos[["panel"]]), show_col_types = FALSE)
 
-if (nrow(panel) != 1122L) {
-  stop(sprintf("Panel limpio: se esperaban 1122 filas, hay %d", nrow(panel)), call. = FALSE)
+if (nrow(panel) != config_voto_fusil$n_municipios) {
+  stop(sprintf("Panel limpio: se esperaban %d filas, hay %d", config_voto_fusil$n_municipios, nrow(panel)), call. = FALSE)
 }
 if (ncol(panel) != 94L) {
   stop(sprintf("Panel limpio: se esperaban 94 columnas, hay %d", ncol(panel)), call. = FALSE)
@@ -44,8 +44,8 @@ cat("OK: panel limpio con 1122 filas, 94 columnas y columna 'cod_dane'.\n")
 # --- Segunda vuelta 2026 ------------------------------------------------------
 seg_vuelta <- read_csv(here::here(archivos_requeridos[["seg_vuelta"]]), show_col_types = FALSE)
 
-if (nrow(seg_vuelta) != 1122L) {
-  stop(sprintf("Segunda vuelta 2026: se esperaban 1122 filas, hay %d", nrow(seg_vuelta)), call. = FALSE)
+if (nrow(seg_vuelta) != config_voto_fusil$n_municipios) {
+  stop(sprintf("Segunda vuelta 2026: se esperaban %d filas, hay %d", config_voto_fusil$n_municipios, nrow(seg_vuelta)), call. = FALSE)
 }
 if (ncol(seg_vuelta) != 12L) {
   stop(sprintf("Segunda vuelta 2026: se esperaban 12 columnas, hay %d", ncol(seg_vuelta)), call. = FALSE)
@@ -78,8 +78,8 @@ cat("OK: los tres archivos ACLED tienen las columnas obligatorias (Admin2 Pcode,
 sv22 <- read_csv(here::here(archivos_requeridos[["sv22"]]), show_col_types = FALSE)
 puente <- read_csv(here::here(archivos_requeridos[["puente"]]), show_col_types = FALSE)
 
-if (nrow(sv22) != 1122L) {
-  stop(sprintf("Segunda vuelta 2022: se esperaban 1122 filas, hay %d", nrow(sv22)), call. = FALSE)
+if (nrow(sv22) != config_voto_fusil$n_municipios) {
+  stop(sprintf("Segunda vuelta 2022: se esperaban %d filas, hay %d", config_voto_fusil$n_municipios, nrow(sv22)), call. = FALSE)
 }
 faltantes_sv22 <- setdiff(c("dep_cod", "mun_cod", "s22_2v_petro", "total22_2v"), names(sv22))
 if (length(faltantes_sv22) > 0) {

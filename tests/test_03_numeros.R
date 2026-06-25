@@ -66,4 +66,21 @@ if (cobertura < 0.9) {
 }
 cat(sprintf("OK: cobertura del modelo = %.1f%% (n=%d/1122).\n", 100 * cobertura, n_obs_modelo))
 
+# --- Robustez de la distincion analitica -----------------------------------
+matriz <- read_csv(file.path(out_dir, "matriz_robustez_completa.csv"), show_col_types = FALSE)
+if (nrow(matriz) != 18L || sum(matriz$tratado == "control_armado") != 9L) {
+  stop("La matriz de robustez no conserva sus 18 especificaciones (9 de control armado).", call. = FALSE)
+}
+
+control_armado <- matriz[matriz$tratado == "control_armado", ]
+if (any(control_armado$coef_tratado <= 0) || any(control_armado$p_valor >= 0.05)) {
+  stop("El patron de control armado dejo de ser positivo y significativo en alguna especificacion.", call. = FALSE)
+}
+
+conflicto <- matriz[matriz$tratado == "conflicto_activo" & matriz$referencia == "resto_colombia", ]
+if (!any(conflicto$coef_tratado > 0) || !any(conflicto$coef_tratado < 0)) {
+  stop("Conflicto activo ya no cambia de signo entre especificaciones; revisar la lectura editorial.", call. = FALSE)
+}
+cat("OK: distincion entre exposicion reciente y control territorial validada en 18 especificaciones.\n")
+
 cat("\n=== test_03_numeros PASSED ===\n")

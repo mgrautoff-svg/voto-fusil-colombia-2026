@@ -1,52 +1,69 @@
-# Voto fusil — ¿la exposición armada explica el cambio de voto en la segunda vuelta 2026?
+# Voto fusil Colombia 2026
 
-Código, tablas de resultados y metodología del análisis publicado en la columna
-**"Ni guerrilleros ni víctimas: el voto armado que nadie quiere explicar"**
-(ver [`outputs/pieza_editorial_voto_fusil.md`](outputs/pieza_editorial_voto_fusil.md)).
+Repositorio público de auditoría, resultados y visualizaciones para la columna:
 
-## Pregunta
+**No es voto fusil. Es voto pistola con silenciador.**
 
-¿La narrativa del "voto fusil" —que los grupos armados habrían inclinado la
-segunda vuelta presidencial 2026 en los territorios donde tienen presencia—
-se sostiene con los datos disponibles?
+El análisis estudia si la narrativa del “voto fusil” en la segunda vuelta presidencial de Colombia 2026 se sostiene en datos municipales. La conclusión central es más precisa: la violencia armada reciente no presenta una señal robusta, mientras el control armado consolidado sí aparece asociado con un mayor aumento de participación electoral.
 
 ## Hallazgo central
 
-No, no como evento electoral del 21 de junio. La exposición armada **reciente**
-(eventos ACLED de noviembre 2025 a mayo 2026) no explica el cambio de voto ni
-de participación una vez se controla por pobreza, ruralidad, coca y PDET.
+La matriz de robustez separa dos mecanismos:
 
-Lo que sí es significativo es una medida de **control armado estructural
-histórico** (tipología territorial, construida con datos 2018-2023, no con el
-índice de exposición reciente): los municipios de control armado consolidado
-muestran más voto hacia Cepeda, pero **no** más participación — un patrón
-consistente con persistencia institucional (Arjona, Acemoglu y Robinson), no
-con coacción electoral puntual.
+- **Control armado consolidado:** coeficiente positivo y significativo en 9 de 9 especificaciones, con magnitudes entre +1.39 y +9.81 puntos porcentuales.
+- **Conflicto activo reciente:** señal inestable. Frente al resto de Colombia es positivo sin controles (+1.21 pp), pero cambia de signo al agregar pobreza multidimensional (-0.65 pp).
 
-## Estructura
+La lectura correcta no es causal dura ni individual. Es una asociación territorial robusta: donde el control armado se volvió institución paralela, la participación aumentó más.
 
-- `scripts/01_datos.R` — carga y verifica 5 insumos (panel electoral histórico,
-  3 archivos ACLED, resultados 2026, segunda vuelta 2022, tipología territorial
-  del Sistema E4 de `conflict_armed`).
-- `scripts/02_analisis.R` — índice de exposición armada, joins, y los modelos
-  (Welch, OLS con errores robustos HC1, con y sin tipología territorial).
-- `scripts/03_guardar_estado.R` — audita y registra los números clave en `docs/ESTADO.md`.
-- `scripts/04_visualizaciones.R` — mapa coroplético (Leaflet) y gráficos de
-  coeficientes (Plotly), todos HTML standalone.
-- `tests/` — verificación de insumos, outputs y números clave.
-- `outputs/tablas/` — resultados de cada bloque de análisis (CSV).
-- `docs/` — bitácora de decisiones metodológicas y fuentes.
+## Visualizaciones públicas
 
-## Reproducibilidad
+Si GitHub Pages está activo, las visualizaciones estarán disponibles en:
 
-Este repo contiene el **código y los resultados**, no los datos crudos (ACLED,
-panel electoral histórico, archivo de tipología territorial) ni el repositorio
-privado de la columna electoral del que depende para los resultados oficiales
-de segunda vuelta — esos viven en repos privados por contener insumos de
-terceros o de otros proyectos. Por eso `run.R` no correrá de forma autónoma
-fuera del entorno original; se publica para auditoría y transparencia
-metodológica, no como pipeline ejecutable de extremo a extremo.
+- [`docs/publicacion/voto_fusil/`](docs/publicacion/voto_fusil/)
+- [`mapa_control_territorial.html`](docs/publicacion/voto_fusil/mapa_control_territorial.html)
+- [`viz_did_intuitiva.html`](docs/publicacion/voto_fusil/viz_did_intuitiva.html)
+- [`mapa_tipologia_territorial.html`](docs/publicacion/voto_fusil/mapa_tipologia_territorial.html)
 
-## Autor
+Iframe sugerido para WordPress:
 
-Manfred Grautoff
+```html
+<iframe
+  src="https://mgrautoff-svg.github.io/voto-fusil-colombia-2026/publicacion/voto_fusil/mapa_control_territorial.html"
+  width="100%"
+  height="720"
+  style="border:0;"
+  loading="lazy">
+</iframe>
+```
+
+## Columna
+
+La pieza editorial está en:
+
+- [`outputs/pieza_editorial_voto_fusil.md`](outputs/pieza_editorial_voto_fusil.md)
+
+## Resultados auditables
+
+Las tablas principales están en:
+
+- [`outputs/tablas/matriz_robustez_completa.csv`](outputs/tablas/matriz_robustez_completa.csv)
+- [`outputs/tablas/resumen_cuatro_grupos.csv`](outputs/tablas/resumen_cuatro_grupos.csv)
+- [`outputs/tablas/did_cuatro_grupos.csv`](outputs/tablas/did_cuatro_grupos.csv)
+- [`outputs/tablas/did_ajustado_ipm_ruralidad.csv`](outputs/tablas/did_ajustado_ipm_ruralidad.csv)
+
+## Alcance metodológico
+
+Este repositorio publica código, resultados y visualizaciones para auditoría. No contiene todos los datos crudos ni pretende ser un pipeline autónomo fuera del entorno original.
+
+El diseño es observacional y agregado:
+
+- compara cambios de participación entre grupos territoriales;
+- usa pruebas de Welch;
+- usa modelos OLS con errores robustos HC1;
+- controla por pobreza, ruralidad y otras condiciones territoriales según especificación.
+
+No identifica coerción individual ni prueba causalidad electoral definitiva.
+
+## Fuente y construcción
+
+Manfred Grautoff · Sistema E4, Registraduría, ACLED, UNODC.

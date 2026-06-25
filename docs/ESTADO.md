@@ -1,68 +1,43 @@
 # Estado del subproyecto voto_fusil
 
-Fecha de inicio: 2026-06-23
-Estado: esqueleto creado
-Proximo paso: completar 01_datos.R
+Fecha del run: 2026-06-24 19:23:02 -05  
+Commit base: `c57ed0a` (con cambios sin commit)  
+Estado: **pipeline completo y tests aprobados**
 
-## Registro de avance
-- 2026-06-23 Esqueleto creado. Insumos verificados y documentados.
-- 2026-06-23: Verificado que archivos ACLED largos (colombia_hrp_*) cubren hasta junio 2026. Archivos cortos (acled_*) solo llegan a enero 2026. Usar largos para el analisis.
+## Números auditados
 
-## Decisión metodológica: ventana temporal del índice de exposición armada
+- Panel final: 1122 filas y 120 columnas.
+- Cobertura del modelo principal: 1102/1122 municipios (98.2%).
+- Ventana ACLED: noviembre de 2025 a mayo de 2026.
+- Especificaciones de robustez: 18.
+- Control armado positivo y significativo: 9/9.
 
-Fecha: 2026-06-23
-Responsable: Manfred Grautoff
+### Distribución de alta exposición
 
-### Ventana seleccionada
-Noviembre 2025 – mayo 2026 (7 meses)
+- `FALSE`: 937 municipios (83.5%)
+- `TRUE`: 185 municipios (16.5%)
 
-### Justificación política
-Las elecciones internas del Pacto Histórico en noviembre 2025 definen
-a Iván Cepeda como candidato oficial. Ese evento activa el ciclo electoral
-relevante: los grupos armados conocen al candidato y pueden posicionarse
-territorialmente antes de la campaña formal.
+### Municipios con mayor exposición
 
-### Sub-períodos analíticos
-- Nov–dic 2025: post-definición del candidato
-- Ene–mar 2026: pre-campaña formal (incluye escalada del Catatumbo)
-- Abr–may 2026: campaña activa hasta primera vuelta (25 mayo)
+1. Tibú (Norte de Santander): 124 eventos
+2. Jamundí (Valle del Cauca): 49 eventos
+3. San José de Cúcuta (Norte de Santander): 44 eventos
+4. Bogotá, D.C. (Cundinamarca): 44 eventos
+5. Santiago de Cali (Valle del Cauca): 39 eventos
 
-### Referencia contextual
-El artículo de RedCheq (18 jun 2026) documenta que la narrativa del
-'voto fusil' circuló con datos incompletos y mapa desactualizado de 2015.
-Este análisis usa corte congelado al 99.7% de mesas y metodología
-explícita para responder ese debate con rigor.
+## Interpretación
 
-### Límite epistemológico declarado
-La ventana no permite inferencia causal. El diseño es descriptivo:
-mide asociación entre exposición armada pre-electoral y comportamiento
-electoral, controlando por historia electoral 2018-2022.
+La exposición armada reciente y el control territorial estructural no son la misma variable. El primer indicador no presenta una asociación robusta en los modelos ajustados. El control armado estructural conserva una asociación positiva con el aumento de participación en 9 especificaciones. Conflicto activo presenta coeficientes entre -0.66 y 7.35 puntos porcentuales, lo que evidencia sensibilidad a controles y grupos de referencia.
 
-## Registro de avance (continuación)
-- 2026-06-23: 02_analisis.R corrido exitosamente.
-  185 municipios alta exposicion (>p75).
-  Tibú encabeza con 124 eventos — valida ventana temporal (Catatumbo ene2026).
-  Validacion externa: RedCheq (18jun2026) menciona Tibú explicitamente.
-  Verificado: 0 NAs nuevos introducidos por los joins (idx_exposicion y
-  columnas de segunda vuelta 2026 sin NA; los unicos NA preexistentes son
-  2 filas en columnas p22_* del panel historico, anteriores a este analisis.
+## Límite epistemológico
 
-## Numeros auditados -- generado por 03_guardar_estado.R
+El diseño es observacional, agregado y municipal. Los coeficientes representan asociaciones, no efectos causales. No permiten identificar decisiones individuales ni descartar episodios particulares de coacción.
 
-Fecha de generacion: 2026-06-23 18:03:36
-Commit: a62246e
+## Productos validados
 
-Panel final: 1122 filas, 119 columnas
+- Tablas y modelos en `outputs/tablas/`.
+- Visualizaciones interactivas en `outputs/graficos/`.
+- Cuatro gráficos oscuros en `outputs/graficas/ppt/`.
+- Cuatro gráficos claros en `outputs/graficas/doc/`.
+- Pieza editorial en `outputs/pieza_editorial_voto_fusil.md`.
 
-Distribucion alta_exposicion:
-  - FALSE: 937 municipios (83.5%)
-  - TRUE: 185 municipios (16.5%)
-
-Top 5 municipios por idx_exposicion:
-  1. Tibú (Norte de Santander) - idx_exposicion: 124
-  2. Jamundí (Valle del Cauca) - idx_exposicion: 49
-  3. San José de Cúcuta (Norte de Santander) - idx_exposicion: 44
-  4. Bogotá, D.C. (Cundinamarca) - idx_exposicion: 44
-  5. Santiago de Cali (Valle del Cauca) - idx_exposicion: 39
-
-Rango temporal ACLED usado: Noviembre 2025 - mayo 2026 (ver decision metodologica en este mismo ESTADO.md)

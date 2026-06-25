@@ -1,0 +1,3 @@
+"especificacion","comparacion","diferencia_pp","ic95","p_valor","sig","n_tratado","n_control"
+"Tabla 1 -- DiD limpio (sin controles, exterior como grupo de control)","control_armado vs. exterior",9.806,"[8.39, 11.22]",0,"***",85,67
+"Tabla 2 -- DiD ajustado (con controles: ipm_dnp, ha_coca, pdet, cat_ruralidad; sin exterior)","control_armado vs. periferico (categoria de referencia D2, ajustado por controles)",0.872,"[-0.33, 2.07]",0.154,"",1101,NA

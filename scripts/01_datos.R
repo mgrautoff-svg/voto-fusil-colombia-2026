@@ -12,11 +12,11 @@ suppressPackageStartupMessages({
 pad_dane <- function(x) sprintf("%05d", suppressWarnings(as.integer(as.character(x))))
 
 # --- 1. Panel electoral historico (2018-2022), ya limpio de duplicados ---
-panel_path <- here::here("data_raw/electoral/base_electoral_2026_panel_limpio.csv")
+panel_path <- here::here(config_voto_fusil$rutas$panel_electoral)
 stopifnot(file.exists(panel_path))
 panel <- read_csv(panel_path, show_col_types = FALSE)
 
-stopifnot(nrow(panel) == 1122L)
+stopifnot(nrow(panel) == config_voto_fusil$n_municipios)
 stopifnot(ncol(panel) == 94L)
 stopifnot("cod_dane" %in% names(panel))
 
@@ -31,9 +31,11 @@ stopifnot("cod_dane" %in% names(panel))
 # La hoja de datos real (no la portada "Licensing") se detecta tomando la
 # ULTIMA hoja del libro, patron tipico de los archivos HDX. Las columnas no
 # se asumen: se reportan para verificacion manual antes de usarlas en 02_analisis.R.
-archivos_acled <- list.files(
-  here::here("data_raw/acled"), pattern = "^colombia_hrp_.*\\.xlsx$", full.names = TRUE
+archivos_acled <- here::here(
+  config_voto_fusil$rutas$acled,
+  unname(config_voto_fusil$fuentes_acled)
 )
+stopifnot(all(file.exists(archivos_acled)))
 stopifnot(length(archivos_acled) == 3L)
 
 columnas_obligatorias_acled <- c(
@@ -58,13 +60,11 @@ for (f in archivos_acled) {
 }
 
 # --- 3. Resultados oficiales segunda vuelta 2026 ---
-seg_vuelta_path <- here::here(
-  "subproyectos/electoral_2026_segunda_vuelta/outputs/supercubo/electoral_2026_segunda_vuelta_municipio.csv"
-)
+seg_vuelta_path <- here::here(config_voto_fusil$rutas$segunda_vuelta_2026)
 stopifnot(file.exists(seg_vuelta_path))
 seg_vuelta <- read_csv(seg_vuelta_path, show_col_types = FALSE)
 
-stopifnot(nrow(seg_vuelta) == 1122L)
+stopifnot(nrow(seg_vuelta) == config_voto_fusil$n_municipios)
 stopifnot(ncol(seg_vuelta) == 12L)
 stopifnot("codigo_municipio" %in% names(seg_vuelta))
 
@@ -74,18 +74,14 @@ stopifnot("codigo_municipio" %in% names(seg_vuelta))
 # Formula verificada en consola (2026-06-23): cod_municipio_registraduria =
 # dep_cod * 100000 + mun_cod (confirmado con Medellin: dep=1, mun=1 -> 100001,
 # que en el puente corresponde a codigo_municipio = 5001, es decir DANE 05001).
-sv22_path <- here::here(
-  "subproyectos/electoral_2026_primera_vuelta/outputs/puestos/tablas/segunda_vuelta_2022_municipios.csv"
-)
-puente_path <- here::here(
-  "subproyectos/electoral_2026_segunda_vuelta/outputs/supercubo/tabla_puente_registraduria_dane.csv"
-)
+sv22_path <- here::here(config_voto_fusil$rutas$segunda_vuelta_2022)
+puente_path <- here::here(config_voto_fusil$rutas$puente_dane)
 stopifnot(file.exists(sv22_path), file.exists(puente_path))
 
 sv22_raw <- read_csv(sv22_path, show_col_types = FALSE)
 puente <- read_csv(puente_path, show_col_types = FALSE)
 
-stopifnot(nrow(sv22_raw) == 1122L)
+stopifnot(nrow(sv22_raw) == config_voto_fusil$n_municipios)
 stopifnot(all(c("dep_cod", "mun_cod", "s22_2v_petro", "total22_2v") %in% names(sv22_raw)))
 stopifnot(all(c("cod_municipio_registraduria", "codigo_municipio") %in% names(puente)))
 
@@ -102,7 +98,7 @@ sv22 <- sv22_raw |>
   mutate(cod_dane = pad_dane(codigo_municipio)) |>
   select(cod_dane, s22_2v_petro, s22_2v_rodolfo, total22_2v, pct22_2v_pet, pct22_2v_rod)
 
-stopifnot(nrow(sv22) == 1122L)
+stopifnot(nrow(sv22) == config_voto_fusil$n_municipios)
 stopifnot(!anyNA(sv22$cod_dane))
 
 # --- 5. Tipologia territorial D2 (Sistema E4, conflict_armed) --------------
@@ -111,11 +107,11 @@ stopifnot(!anyNA(sv22$cod_dane))
 # corredor/control_armado/produccion_intensiva) -- NO el score completo ni D4,
 # porque D4 ya incluye ACLED y abstencion, que colisionarian con idx_exposicion
 # y cambio_participacion_pp que ya estan en el modelo de voto_fusil.
-m5_path <- here::here("subproyectos/voto_fusil/data_raw/M5_score_clasificacion.rds")
+m5_path <- here::here(config_voto_fusil$rutas$tipologia_d2)
 stopifnot(file.exists(m5_path))
 m5 <- readRDS(m5_path)
 
-stopifnot(nrow(m5) == 1122L)
+stopifnot(nrow(m5) == config_voto_fusil$n_municipios)
 stopifnot("tipologia" %in% names(m5))
 stopifnot("code" %in% names(m5))
 

@@ -1,35 +1,41 @@
-# Ni guerrilleros ni víctimas: el voto armado que nadie quiere explicar
+# No es voto fusil. Es voto pistola con silenciador.
 
-Son las 9 de la noche del 21 de junio y en los canales de YouTube el senador electo Andrés Forero muestra una tabla. Anorí, Antioquia: Cepeda pasó de 1.275 votos en la primera vuelta a 3.849 en la segunda. Casi triplicó. En un municipio con presencia histórica de grupos armados. La conclusión que Forero propone es simple: voto fusil. Los grupos armados inclinaron la segunda vuelta.
+## 1. La acusación
 
-Es una hipótesis que merece una respuesta a la altura. No un mapa viral. No una indignación de madrugada. Una respuesta con datos.
+La acusación era demasiado perfecta: en municipios con presencia histórica de grupos armados, Iván Cepeda aumentó votos y participación; por tanto, alguien con fusil habría ordenado votar. La frase llegó lista para circular: “voto fusil”. Un hombre armado, una instrucción y una urna. El mapa parecía cerrar el caso antes de abrirlo.
 
-Crucé los 1.122 municipios del país con el índice de eventos armados de ACLED entre noviembre de 2025 —cuando el Pacto Histórico eligió a Cepeda como candidato— y mayo de 2026. Comparé segunda vuelta con segunda vuelta, no primera con segunda. Medí el cambio en voto izquierda y el cambio en participación. Agregué controles por pobreza, ruralidad, coca y PDET. Y cuando los datos no alcanzaron, fui más lejos.
+El problema es que una coincidencia municipal no prueba una historia causal. Por eso cruzamos los 1.122 municipios con eventos armados de ACLED entre noviembre de 2025 y mayo de 2026, resultados electorales de 2018 a 2026, controles de pobreza, ruralidad, coca y municipios PDET, y el exterior como contraste sin control territorial colombiano.
 
-**El fusil del domingo no está.**
+La primera conclusión incomoda a ambos bandos. Los datos municipales no miran dentro de cada cabina ni descartan episodios particulares de coacción. Pero tampoco muestran el patrón agregado que necesitaría la tesis simple del “voto fusil”: violencia reciente, orden reciente, voto reciente. Cuando se agregan controles territoriales, esa señal coyuntural se vuelve inestable.
 
-En los municipios de baja exposición armada reciente el voto izquierda cambió -0,16 puntos porcentuales entre 2022 y 2026. En los de alta exposición, -0,78 puntos. Ambos grupos se movieron casi igual — ligeramente hacia abajo — y la diferencia no es estadísticamente distinguible del ruido (p=0,181). La participación subió 7,95 puntos en baja exposición y 8,98 en alta: un punto de diferencia que desaparece completamente cuando se controla por pobreza y por si el municipio es PDET (p=0,769). El constreñimiento armado masivo del domingo 21 no aparece en los números.
+## 2. El hallazgo
 
-Forero tiene razón en que algo pasa en esos territorios. Pero el algo no es lo que él describe.
+La historia cambia cuando se separa el fusil visible de la pistola silenciosa. La tipología del Sistema E4 distingue municipios con conflicto activo —donde hay violencia reciente— de territorios con control armado consolidado, donde un actor ilegal lleva años administrando reglas, castigos, rentas y autoridad cotidiana.
 
-**La pistola sí deja huella. Pero no es la del domingo.**
+Panel A: control armado. El coeficiente es positivo y estadísticamente significativo en las nueve especificaciones. Sin excepción. No depende de escoger una referencia cómoda: sobrevive frente al resto de Colombia, frente al exterior y frente a ambos grupos combinados. La magnitud cae cuando entran pobreza y ruralidad, pero la señal no desaparece. El rango va de +1.39 a +9.81 puntos porcentuales.
 
-Cuando al modelo se le agrega la tipología territorial del Sistema E4 —que no mide eventos recientes sino control armado estructural histórico, construido con décadas de datos— los municipios clasificados como de control armado consolidado muestran 2,02 puntos porcentuales más de voto Cepeda después de controlar por pobreza, ruralidad, coca y exposición armada reciente (p=0,008). El resultado sobrevive todas las pruebas técnicas.
+Panel B: conflicto activo. Ahí pasa lo contrario. Sin controles, frente al resto de Colombia, el coeficiente es positivo: +1.21 puntos. Pero cuando entra el índice de pobreza multidimensional cambia de signo y cae a -0.65 puntos. El fusil visible parece movilizar porque está parado sobre municipios más pobres. Una vez se compara con territorios parecidos en pobreza, deja de parecer motor electoral.
 
-Eso no es un guerrillero apuntando en la cabina el domingo. Es lo que Ana Arjona llama rebelocracia: cuando un grupo armado ocupa el espacio del Estado durante décadas, no solo controla el territorio — construye una institución paralela que organiza la vida económica, resuelve conflictos, cobra impuestos ilegales y provee seguridad a su manera. Acemoglu y Robinson lo documentaron en otros contextos: las instituciones extractivas dejan huellas en el comportamiento político que persisten generaciones después de que la institución misma haya cambiado o desaparecido.
+## 3. La explicación
 
-En esos municipios el habitante no vota por Cepeda porque un hombre armado se lo dijo ese domingo. Vota por Cepeda porque lleva décadas viviendo en un territorio donde el único orden que conoce es el que el Estado nunca proveyó. Esa preferencia no necesita coacción directa para reproducirse. Ya está incorporada.
+Ana Arjona llama “rebelocracia” a los lugares donde una organización armada no se limita a combatir: impone reglas, resuelve disputas, cobra, castiga y organiza intercambios. Acemoglu y Robinson han mostrado, en otros contextos, que las instituciones pueden dejar efectos persistentes mucho después de su creación. El Estado ausente no deja un vacío limpio. Alguien ocupa ese espacio y convierte su autoridad en rutina.
 
-Pero hay una tercera capa que los datos no resuelven y que sería deshonesto ignorar. En territorios de conflicto activo el habitante no solo vota por identidad — también calcula. Aprende con el tiempo qué candidatos traen más operaciones militares, más desplazamiento, más riesgo cotidiano. Y qué candidatos traen menos. Ese cálculo no es coacción directa ni preferencia internalizada — es racionalidad bajo incertidumbre con información que el Estado nunca proveyó. Los datos no permiten separar ese mecanismo de los otros dos. Nombrarlo es parte del resultado.
+Esa perspectiva ofrece una interpretación más seria que la caricatura de un guerrillero acompañando al votante. El control consolidado puede moldear redes, expectativas, permisos, silencios y formas de coordinación política sin aparecer el domingo de elecciones. También puede convivir con pobreza, economías ilegales y preferencias históricas. La regresión municipal no permite escoger definitivamente entre esos mecanismos. Sí permite observar algo más estrecho: el patrón estructural persiste; la violencia reciente no.
 
-**Y ahí está la paradoja que nadie quiere ver.**
+Por eso sería un error decir que los datos demuestran cómo votó cada habitante o prueban coerción individual. Este no es un diseño causal de diferencias en diferencias. Es una comparación descriptiva de cambios, con pruebas de Welch y OLS con errores robustos. La evidencia debe leerse como asociación territorial robusta: donde el control armado está consolidado, el aumento de participación fue mayor incluso después de controles centrales.
 
-Ese mismo control armado que produce el voto cautivo suprime la movilización que Cepeda necesitaba para ganar. La participación en municipios de control armado consolidado no subió más que en el resto (p=0,154). El territorio que el Estado perdió votó por quien prometía recuperarlo — pero no salió en masa a hacerlo. La institución armada garantiza el voto de siempre y destruye el voto nuevo.
+## 4. La paradoja
 
-Cepeda perdió dentro de Colombia por 0,29 puntos porcentuales. Tres décimas. En una elección tan ajustada, la participación suprimida en sus propios territorios fuertes pudo haber sido la diferencia. Su base más leal fue simultáneamente su techo más bajo.
+Cepeda perdió dentro de Colombia por 0,29 puntos porcentuales. En ese contexto, una comparación ajustada de +1.75 puntos y una diferencia simple de aumentos de +3.67 puntos no son una curiosidad menor. Son magnitudes electoralmente relevantes. No pueden convertirse mecánicamente en votos “causados” ni demostrar que decidieron el resultado, pero tampoco pueden barrerse como ruido.
 
-Esto incomoda a todos por razones distintas. A Forero porque desmonta el voto fusil como evento electoral: no hubo movilización forzada masiva ese domingo. A la izquierda porque confirma que el control armado estructura parte de su base electoral — no como coacción sino como herencia institucional de décadas de abandono. Y a todos porque señala lo mismo que llevan años sin resolver: hay territorios en Colombia donde el Estado nunca llegó, donde otro llegó en su lugar, y donde esa ausencia acumulada ahora determina elecciones.
+La paradoja es política. El territorio que el Estado perdió aumentó más su participación cuando apareció un candidato que prometía recuperarlo. No sabemos si actuaron memoria institucional, redes locales, esperanza, presión o una mezcla de todas. Sabemos que esos municipios no fueron electoralmente inmóviles: salieron a votar en masa.
 
-La pregunta que le queda al nuevo gobierno no es si hubo voto fusil. Es si va a gobernar esos territorios o va a seguir administrando su ausencia.
+La acusación de “voto fusil” reduce décadas de construcción territorial a una orden dominical. La evidencia apunta a algo más profundo y menos cómodo. No es el evento armado reciente el que sobrevive a la matriz de robustez. Es el orden armado convertido en institución paralela.
 
-*Datos, código y metodología disponibles en github.com/mgrautoff-svg/voto-fusil-colombia-2026*
+La pregunta para el nuevo gobierno no es únicamente quién presionó a quién el día de la elección. Es si va a gobernar esos territorios con instituciones legítimas o seguirá administrando una ausencia cuyos efectos políticos ya son visibles.
+
+*Datos, código y metodología: github.com/mgrautoff-svg/Reforma-UIAF*
+
+---
+
+Fuente y construcción: Manfred Grautoff · Sistema E4, Registraduría, ACLED, UNODC
