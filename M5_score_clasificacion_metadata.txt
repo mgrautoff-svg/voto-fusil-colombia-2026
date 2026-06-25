@@ -1,0 +1,21 @@
+Fuente: CoworkActivo/conflict_armed — Sistema E4 de inteligencia territorial
+Fecha del archivo fuente: 2026-05-29
+Autor: Manfred Grautoff
+Llave: code (DANE 5 dígitos, texto con cero a la izquierda)
+Variable usada: tipologia (D2 — tipología funcional k-means k=5)
+Categorías: periferico (595), conflicto_activo (223), corredor (154),
+            control_armado (85), produccion_intensiva (65)
+Razón de uso: D2 no contiene ACLED ni abstención — independiente
+              de idx_exposicion y cambio_participacion_pp ya en el modelo.
+              Mide control territorial estructural, no eventos recientes.
+Advertencia: D4 y score completo tienen colinealidad con variables
+             del modelo actual — no usar.
+
+CORRECCIÓN (2026-06-23): D2 sí incluye acled_pt_media como una de 14
+variables del k-means (ver M2 en nota_metodologica_modelos.txt del
+proyecto fuente). La afirmación de independencia total de arriba era
+incorrecta. VIF verificado en 02_analisis.R (Bloque F1): tipologia_d2
+GVIF=2.24, alta_exposicion GVIF=1.35 — colinealidad presente pero no
+problemática (umbral de preocupación: VIF>5; grave: VIF>10). Resultado
+del Bloque F1 validado post-VIF: las variables estan correlacionadas
+pero no son colineales en sentido que invalide los coeficientes.
