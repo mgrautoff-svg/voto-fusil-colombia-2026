@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Municipios con &gt;90% de share y aumento abrupto de participación</title>
+  <style>
+      :root {
+        --bg: #1f1f1d;
+        --panel: #242421;
+        --panel2: #2b2b28;
+        --text: #f2efe6;
+        --muted: #bdb7a9;
+        --rule: #d9d0bd;
+        --accent: #ff5c00;
+        --red: #ff3838;
+        --blue: #4d8cff;
+      }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--text);
+        font-family: Georgia, 'Times New Roman', serif;
+      }
+      .wrap {
+        max-width: 1080px;
+        margin: 0 auto;
+        padding: 34px 38px 30px 38px;
+        background: var(--bg);
+      }
+      h1 {
+        margin: 0;
+        font-size: 22px;
+        line-height: 1.08;
+        letter-spacing: -0.01em;
+        font-weight: 800;
+      }
+      .sub {
+        margin-top: 5px;
+        color: var(--muted);
+        font-size: 15px;
+        font-weight: 700;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+        font-size: 15px;
+      }
+      thead th {
+        border-top: 1.5px solid var(--rule);
+        border-bottom: 1.5px solid var(--rule);
+        padding: 8px 8px;
+        text-align: left;
+        font-weight: 800;
+      }
+      tbody tr:nth-child(odd) td { background: #242421; }
+      tbody tr:nth-child(even) td { background: #2a2a27; }
+      td {
+        padding: 6px 8px;
+        vertical-align: middle;
+        border: 0;
+        font-weight: 700;
+      }
+      .section {
+        padding: 10px 8px 7px 8px;
+        color: var(--muted);
+        background: var(--bg);
+        border-top: 1.5px solid var(--rule);
+        font-size: 14px;
+        text-align: left;
+        text-transform: uppercase;
+        letter-spacing: 0.01em;
+      }
+      .municipio { font-weight: 900; }
+      .num { text-align: right; font-variant-numeric: tabular-nums; }
+      .delta { color: var(--accent); font-weight: 900; }
+      .empty {
+        text-align: center;
+        color: var(--muted);
+        font-style: italic;
+        padding: 13px 8px;
+      }
+      .tipo {
+        text-align: right;
+        font-size: 13px;
+        color: #f4f0e8;
+      }
+      .control_armado { color: #ffd1d1; }
+      .conflicto_activo { color: #ffd7b5; }
+      .produccion_intensiva { color: #ffe6a3; }
+      .periferico { color: #e5e5e5; }
+      .corredor { color: #ffd071; }
+      .notes {
+        margin-top: 16px;
+        border-top: 1.5px solid var(--rule);
+        padding-top: 12px;
+        color: var(--muted);
+        font-size: 13.5px;
+        line-height: 1.45;
+        font-weight: 700;
+      }
+      .takeaway {
+        color: var(--text);
+      }
+      @media (max-width: 760px) {
+        .wrap { padding: 22px 14px; }
+        table { font-size: 12px; }
+        h1 { font-size: 18px; }
+        .sub { font-size: 13px; }
+        th, td { padding: 5px 4px; }
+        .tipo { font-size: 11px; }
+      }
+    </style>
+</head>
+<html>
+  <body>
+    <main class="wrap">
+      <h1>Municipios con &gt;90% de share y aumento abrupto de participación (&gt;p90 = +12.98 pp)</h1>
+      <div class="sub">Segunda vuelta presidencial Colombia 2026. Ordenados por aumento de participación.</div>
+      <table>
+        <thead>
+          <tr>
+            <th>Municipio</th>
+            <th>Dpto.</th>
+            <th class="num">Cepeda (%)</th>
+            <th class="num">Espriella (%)</th>
+            <th class="num">Part. 1ª v.</th>
+            <th class="num">Part. 2ª v.</th>
+            <th class="num">Δ pp</th>
+            <th class="tipo">Tipología</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th colspan="8" class="section">CEPEDA &gt;90% CON AUMENTO ABRUPTO — 19 municipios</th>
+          </tr>
+          <tr>
+            <td class="municipio">López</td>
+            <td>Cauca</td>
+            <td class="num">92.3</td>
+            <td class="num">6.4</td>
+            <td class="num">35.3</td>
+            <td class="num">62.9</td>
+            <td class="num delta">+27.6</td>
+            <td class="tipo control_armado">control_armado</td>
+          </tr>
+          <tr>
+            <td class="municipio">Santa Bárbara</td>
+            <td>Nariño</td>
+            <td class="num">95.0</td>
+            <td class="num">4.1</td>
+            <td class="num">37.0</td>
+            <td class="num">61.9</td>
+            <td class="num delta">+24.9</td>
+            <td class="tipo control_armado">control_armado</td>
+          </tr>
+          <tr>
+            <td class="municipio">Timbiquí</td>
+            <td>Cauca</td>
+            <td class="num">97.4</td>
+            <td class="num">2.4</td>
+            <td class="num">44.4</td>
+            <td class="num">65.4</td>
+            <td class="num delta">+21.0</td>
+            <td class="tipo periferico">periférico</td>
+          </tr>
+          <tr>
+            <td class="municipio">Magüí</td>
+            <td>Nariño</td>
+            <td class="num">97.6</td>
+            <td class="num">2.0</td>
+            <td class="num">44.9</td>
+            <td class="num">65.2</td>
+            <td class="num delta">+20.3</td>
+            <td class="tipo control_armado">control_armado</td>
+          </tr>
+          <tr>
+            <td class="municipio">Roberto Payán</td>
+            <td>Nariño</td>
+            <td class="num">97.8</td>
+            <td class="num">1.8</td>
+            <td class="num">45.3</td>
+            <td class="num">65.4</td>
+            <td class="num delta">+20.1</td>
+            <td class="tipo control_armado">control_armado</td>
+          </tr>
+          <tr>
+            <td class="municipio">Sipí</td>
+            <td>Chocó</td>
+            <td class="num">90.1</td>
+            <td class="num">9.3</td>
+            <td class="num">34.5</td>
+            <td class="num">53.5</td>
+            <td class="num delta">+19.0</td>
+            <td class="tipo conflicto_activo">conflicto_activo</td>
+          </tr>
+          <tr>
+            <td class="municipio">Providencia</td>
+            <td>Nariño</td>
+            <td class="num">90.2</td>
+            <td class="num">9.1</td>
+            <td class="num">58.3</td>
+            <td class="num">76.8</td>
+            <td class="num delta">+18.5</td>
+            <td class="tipo periferico">periférico</td>
+          </tr>
+          <tr>
+            <td class="municipio">Pacoa</td>
+            <td>Vaupés</td>
+            <td class="num">96.9</td>
+            <td class="num">2.8</td>
+            <td class="num">28.4</td>
+            <td class="num">46.4</td>
+            <td class="num delta">+18.0</td>
+            <td class="tipo control_armado">control_armado</td>
+          </tr>
+          <tr>
+            <td class="municipio">El Charco</td>
+            <td>Nariño</td>
+            <td class="num">92.8</td>
+            <td class="num">6.3</td>
+            <td class="num">42.3</td>
+            <td class="num">60.0</td>
+            <td class="num delta">+17.8</td>
+            <td class="tipo control_armado">control_armado</td>
+          </tr>
+          <tr>
+            <td class="municipio">Guapi</td>
+            <td>Cauca</td>
+            <td class="num">94.1</td>
+            <td class="num">5.5</td>
+            <td class="num">38.9</td>
+            <td class="num">56.3</td>
+            <td class="num delta">+17.4</td>
+            <td class="tipo produccion_intensiva">prod. intensiva</td>
+          </tr>
+          <tr>
+            <td class="municipio">Medio Atrato</td>
+            <td>Chocó</td>
+            <td class="num">90.1</td>
+            <td class="num">9.6</td>
+            <td class="num">32.2</td>
+            <td class="num">48.9</td>
+            <td class="num delta">+16.7</td>
+            <td class="tipo conflicto_activo">conflicto_activo</td>
+          </tr>
+          <tr>
+            <td class="municipio">Almaguer</td>
+            <td>Cauca</td>
+            <td class="num">93.9</td>
+            <td class="num">4.3</td>
+            <td class="num">59.6</td>
+            <td class="num">75.8</td>
+            <td class="num delta">+16.2</td>
+            <td class="tipo periferico">periférico</td>
+          </tr>
+          <tr>
+            <td class="municipio">Mosquera</td>
+            <td>Nariño</td>
+            <td class="num">98.0</td>
+            <td class="num">1.8</td>
+            <td class="num">41.4</td>
+            <td class="num">57.5</td>
+            <td class="num delta">+16.1</td>
+            <td class="tipo control_armado">control_armado</td>
+          </tr>
+          <tr>
+            <td class="municipio">Francisco Pizarro</td>
+            <td>Nariño</td>
+            <td class="num">96.5</td>
+            <td class="num">2.9</td>
+            <td class="num">44.0</td>
+            <td class="num">59.3</td>
+            <td class="num delta">+15.2</td>
+            <td class="tipo control_armado">control_armado</td>
+          </tr>
+          <tr>
+            <td class="municipio">Barrancominas</td>
+            <td>Guainía</td>
+            <td class="num">91.7</td>
+            <td class="num">7.8</td>
+            <td class="num">31.4</td>
+            <td class="num">45.9</td>
+            <td class="num delta">+14.5</td>
+            <td class="tipo conflicto_activo">conflicto_activo</td>
+          </tr>
+          <tr>
+            <td class="municipio">Murindó</td>
+            <td>Antioquia</td>
+            <td class="num">93.6</td>
+            <td class="num">6.2</td>
+            <td class="num">45.2</td>
+            <td class="num">59.3</td>
+            <td class="num delta">+14.1</td>
+            <td class="tipo conflicto_activo">conflicto_activo</td>
+          </tr>
+          <tr>
+            <td class="municipio">Bolívar</td>
+            <td>Cauca</td>
+            <td class="num">90.2</td>
+            <td class="num">7.2</td>
+            <td class="num">61.8</td>
+            <td class="num">75.0</td>
+            <td class="num delta">+13.2</td>
+            <td class="tipo periferico">periférico</td>
+          </tr>
+          <tr>
+            <td class="municipio">Alto Baudó</td>
+            <td>Chocó</td>
+            <td class="num">96.7</td>
+            <td class="num">3.2</td>
+            <td class="num">41.5</td>
+            <td class="num">54.8</td>
+            <td class="num delta">+13.2</td>
+            <td class="tipo conflicto_activo">conflicto_activo</td>
+          </tr>
+          <tr>
+            <td class="municipio">Medio San Juan</td>
+            <td>Chocó</td>
+            <td class="num">90.6</td>
+            <td class="num">8.5</td>
+            <td class="num">41.8</td>
+            <td class="num">54.9</td>
+            <td class="num delta">+13.2</td>
+            <td class="tipo conflicto_activo">conflicto_activo</td>
+          </tr>
+        </tbody>
+        <tbody>
+          <tr>
+            <th colspan="8" class="section">ESPRIELLA &gt;90% CON AUMENTO ABRUPTO — 0 municipios</th>
+          </tr>
+          <tr>
+            <td colspan="8" class="empty">Ningún municipio registró simultáneamente &gt;90% de share y aumento abrupto de participación.</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="notes">
+        <strong>Notas: </strong>
+        umbral de aumento abrupto = percentil 90 del cambio en participación (+12.98 pp). 
+        Tipología D2 del Sistema E4. Δpp = cambio en participación entre primera y segunda vuelta 2026. 
+        <span class="takeaway">
+          La tabla identifica 19 municipios para Cepeda y 0 para Espriella. 
+          La ausencia de casos simétricos para Espriella refuerza la lectura editorial: la concentración extrema del voto con aumento abrupto de participación no aparece como fenómeno balanceado entre candidatos.
+        </span>
+      </div>
+    </main>
+  </body>
+</html>
+</html>

@@ -6,6 +6,7 @@ Paquete público para embeber visualizaciones del subproyecto `voto_fusil` en me
 
 - `mapa_control_territorial.html`: mapa Leaflet principal para columna.
 - `viz_did_intuitiva.html`: visualización descriptiva de aumentos de participación.
+- `tabla_atipicos_90_participacion.html`: tabla editorial de concentración extrema de voto y aumento abrupto de participación.
 - `mapa_tipologia_territorial.html`: mapa tipológico de respaldo.
 
 ## URLs esperadas con GitHub Pages
@@ -15,6 +16,7 @@ Si GitHub Pages sirve desde la raíz del repositorio:
 ```text
 https://mgrautoff-svg.github.io/voto-fusil-colombia-2026/publicacion/voto_fusil/mapa_control_territorial.html
 https://mgrautoff-svg.github.io/voto-fusil-colombia-2026/publicacion/voto_fusil/viz_did_intuitiva.html
+https://mgrautoff-svg.github.io/voto-fusil-colombia-2026/publicacion/voto_fusil/tabla_atipicos_90_participacion.html
 https://mgrautoff-svg.github.io/voto-fusil-colombia-2026/publicacion/voto_fusil/mapa_tipologia_territorial.html
 ```
 

@@ -22,6 +22,7 @@ Si GitHub Pages está activo, las visualizaciones estarán disponibles en:
 - [`docs/publicacion/voto_fusil/`](docs/publicacion/voto_fusil/)
 - [`mapa_control_territorial.html`](docs/publicacion/voto_fusil/mapa_control_territorial.html)
 - [`viz_did_intuitiva.html`](docs/publicacion/voto_fusil/viz_did_intuitiva.html)
+- [`tabla_atipicos_90_participacion.html`](docs/publicacion/voto_fusil/tabla_atipicos_90_participacion.html)
 - [`mapa_tipologia_territorial.html`](docs/publicacion/voto_fusil/mapa_tipologia_territorial.html)
 
 Iframe sugerido para WordPress:
