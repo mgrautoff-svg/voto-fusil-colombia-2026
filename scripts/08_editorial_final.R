@@ -1,4 +1,4 @@
-﻿# Responsabilidad: producir la visualizacion DiD para lector general y
+# Responsabilidad: producir la visualizacion DiD para lector general y
 # actualizar la pieza editorial usando resultados ya calculados.
 # Prerequisitos: ejecutar antes 05_exterior_grupo_control.R.
 

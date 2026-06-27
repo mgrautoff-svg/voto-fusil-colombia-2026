@@ -1,29 +1,36 @@
 # Voto fusil Colombia 2026
 
-Repositorio público de auditoría, resultados y visualizaciones para la columna:
+Repositorio publico de auditoria metodologica, resultados y visualizaciones para
+la columna:
 
 **No es voto fusil. Es voto pistola con silenciador.**
 
-El análisis estudia si la narrativa del “voto fusil” en la segunda vuelta presidencial de Colombia 2026 se sostiene en datos municipales. La conclusión central es más precisa: la violencia armada reciente no presenta una señal robusta, mientras el control armado consolidado sí aparece asociado con un mayor aumento de participación electoral.
+El proyecto analiza si la narrativa del "voto fusil" en la segunda vuelta
+presidencial de Colombia 2026 se sostiene en datos municipales. La conclusion
+tecnica es mas precisa: la violencia armada reciente no presenta una senal
+robusta; el control armado estructural si aparece asociado con un mayor aumento
+de participacion electoral.
 
 ## Hallazgo central
 
 La matriz de robustez separa dos mecanismos:
 
-- **Control armado consolidado:** coeficiente positivo y significativo en 9 de 9 especificaciones, con magnitudes entre +1.39 y +9.81 puntos porcentuales.
-- **Conflicto activo reciente:** señal inestable. Frente al resto de Colombia es positivo sin controles (+1.21 pp), pero cambia de signo al agregar pobreza multidimensional (-0.65 pp).
+- **Control armado estructural:** coeficiente positivo y significativo en 9 de 9
+  especificaciones, con magnitudes entre +1.39 y +9.81 puntos porcentuales.
+- **Conflicto activo reciente:** senal inestable. Frente al resto de Colombia es
+  positivo sin controles (+1.21 pp), pero cambia de signo al agregar pobreza
+  multidimensional (-0.65 pp).
 
-La lectura correcta no es causal dura ni individual. Es una asociación territorial robusta: donde el control armado se volvió institución paralela, la participación aumentó más.
+La lectura correcta no es causal individual. Es una asociacion territorial
+robusta: donde el control armado se volvio institucion paralela, la participacion
+aumento mas.
 
-## Visualizaciones públicas
+## Visualizaciones publicas
 
-Si GitHub Pages está activo, las visualizaciones estarán disponibles en:
-
-- [`docs/publicacion/voto_fusil/`](docs/publicacion/voto_fusil/)
-- [`mapa_control_territorial.html`](docs/publicacion/voto_fusil/mapa_control_territorial.html)
-- [`viz_did_intuitiva.html`](docs/publicacion/voto_fusil/viz_did_intuitiva.html)
-- [`tabla_atipicos_90_participacion.html`](docs/publicacion/voto_fusil/tabla_atipicos_90_participacion.html)
-- [`mapa_tipologia_territorial.html`](docs/publicacion/voto_fusil/mapa_tipologia_territorial.html)
+- [Mapa principal: control territorial y voto presidencial](https://mgrautoff-svg.github.io/voto-fusil-colombia-2026/publicacion/voto_fusil/mapa_control_territorial.html)
+- [Visualizacion DiD descriptiva](https://mgrautoff-svg.github.io/voto-fusil-colombia-2026/publicacion/voto_fusil/viz_did_intuitiva.html)
+- [Tabla editorial de municipios atipicos](https://mgrautoff-svg.github.io/voto-fusil-colombia-2026/publicacion/voto_fusil/tabla_atipicos_90_participacion.html)
+- [Mapa de tipologia territorial](https://mgrautoff-svg.github.io/voto-fusil-colombia-2026/publicacion/voto_fusil/mapa_tipologia_territorial.html)
 
 Iframe sugerido para WordPress:
 
@@ -37,34 +44,57 @@ Iframe sugerido para WordPress:
 </iframe>
 ```
 
-## Columna
+## Documentacion metodologica
 
-La pieza editorial está en:
-
-- [`outputs/pieza_editorial_voto_fusil.md`](outputs/pieza_editorial_voto_fusil.md)
+- [`docs/METODOLOGIA.md`](docs/METODOLOGIA.md): diseno analitico, familias de
+  modelos y resultado central.
+- [`docs/NOTA_DID_DESCRIPTIVO.md`](docs/NOTA_DID_DESCRIPTIVO.md): por que el
+  DiD de la visualizacion es descriptivo y no causal fuerte.
+- [`docs/NOTA_KALMAN_D4.md`](docs/NOTA_KALMAN_D4.md): construccion del filtro
+  Kalman/D4 y razon para no usarlo como estimador principal.
+- [`docs/DICCIONARIO_VARIABLES.md`](docs/DICCIONARIO_VARIABLES.md): variables
+  clave.
+- [`docs/GUIA_REVISION_Q1.md`](docs/GUIA_REVISION_Q1.md): checklist de revision
+  tecnica externa.
+- [`docs/ESTADO.md`](docs/ESTADO.md): ultimo run documentado y numeros auditados.
 
 ## Resultados auditables
-
-Las tablas principales están en:
 
 - [`outputs/tablas/matriz_robustez_completa.csv`](outputs/tablas/matriz_robustez_completa.csv)
 - [`outputs/tablas/resumen_cuatro_grupos.csv`](outputs/tablas/resumen_cuatro_grupos.csv)
 - [`outputs/tablas/did_cuatro_grupos.csv`](outputs/tablas/did_cuatro_grupos.csv)
 - [`outputs/tablas/did_ajustado_ipm_ruralidad.csv`](outputs/tablas/did_ajustado_ipm_ruralidad.csv)
+- [`outputs/pieza_editorial_voto_fusil.md`](outputs/pieza_editorial_voto_fusil.md)
 
-## Alcance metodológico
+## Reproduccion
 
-Este repositorio publica código, resultados y visualizaciones para auditoría. No contiene todos los datos crudos ni pretende ser un pipeline autónomo fuera del entorno original.
+El pipeline completo vive en el entorno privado original porque algunos datos
+crudos no se publican en este repositorio. En el entorno de trabajo, la ejecucion
+se hace desde la raiz de `D:/Dropbox/Reform_UIAF`:
 
-El diseño es observacional y agregado:
+```r
+source("subproyectos/voto_fusil/run.R")
+```
 
-- compara cambios de participación entre grupos territoriales;
-- usa pruebas de Welch;
-- usa modelos OLS con errores robustos HC1;
-- controla por pobreza, ruralidad y otras condiciones territoriales según especificación.
+El run validado debe terminar con:
 
-No identifica coerción individual ni prueba causalidad electoral definitiva.
+```text
+=== PIPELINE voto_fusil COMPLETADO ===
+```
 
-## Fuente y construcción
+Y pasar:
 
-Manfred Grautoff · Sistema E4, Registraduría, ACLED, UNODC.
+- `test_01_prerequisitos`;
+- `test_02_outputs`;
+- `test_03_numeros`.
+
+## Alcance y limites
+
+El diseno es observacional, agregado y municipal. No identifica decisiones
+individuales, no prueba causalidad electoral definitiva y no descarta episodios
+particulares de coaccion. El resultado debe leerse como asociacion territorial
+robusta, no como prueba individual de voto coaccionado.
+
+## Fuente y construccion
+
+Manfred Grautoff · Sistema E4, Registraduria, ACLED, UNODC.

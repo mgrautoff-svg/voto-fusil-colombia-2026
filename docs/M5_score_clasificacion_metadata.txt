@@ -1,21 +1,86 @@
-Fuente: CoworkActivo/conflict_armed — Sistema E4 de inteligencia territorial
+Fuente: CoworkActivo/conflict_armed - Sistema E4 de inteligencia territorial
 Fecha del archivo fuente: 2026-05-29
 Autor: Manfred Grautoff
-Llave: code (DANE 5 dígitos, texto con cero a la izquierda)
-Variable usada: tipologia (D2 — tipología funcional k-means k=5)
-Categorías: periferico (595), conflicto_activo (223), corredor (154),
-            control_armado (85), produccion_intensiva (65)
-Razón de uso: D2 no contiene ACLED ni abstención — independiente
-              de idx_exposicion y cambio_participacion_pp ya en el modelo.
-              Mide control territorial estructural, no eventos recientes.
-Advertencia: D4 y score completo tienen colinealidad con variables
-             del modelo actual — no usar.
+Llave: code (DANE 5 digitos, texto con cero a la izquierda)
+Variable usada: tipologia (D2 - tipologia funcional k-means k=5)
 
-CORRECCIÓN (2026-06-23): D2 sí incluye acled_pt_media como una de 14
-variables del k-means (ver M2 en nota_metodologica_modelos.txt del
-proyecto fuente). La afirmación de independencia total de arriba era
-incorrecta. VIF verificado en 02_analisis.R (Bloque F1): tipologia_d2
-GVIF=2.24, alta_exposicion GVIF=1.35 — colinealidad presente pero no
-problemática (umbral de preocupación: VIF>5; grave: VIF>10). Resultado
-del Bloque F1 validado post-VIF: las variables estan correlacionadas
-pero no son colineales en sentido que invalide los coeficientes.
+Categorias:
+
+- periferico: 595 municipios
+- conflicto_activo: 223 municipios
+- corredor: 154 municipios
+- control_armado: 85 municipios
+- produccion_intensiva: 65 municipios
+
+## Razon de uso
+
+Se usa D2 porque clasifica arquitectura territorial estructural. No es un indice
+de abstencion ni una medida construida para explicar participacion electoral
+2026. Permite separar control armado consolidado, conflicto activo, corredores,
+produccion intensiva y periferia.
+
+D2 si incluye una variable historica de violencia politica ACLED promedio
+(`acled_pt_media`), por lo que no debe describirse como totalmente independiente
+de ACLED. La diferencia relevante es temporal y conceptual:
+
+- `idx_exposicion` usa eventos recientes ACLED de noviembre 2025 a mayo 2026;
+- D2 usa variables estructurales historicas 2018-2023.
+
+## Advertencia sobre D4 y score completo
+
+D4 y el score completo tienen colinealidad y riesgo de circularidad para este
+subproyecto porque incorporan violencia y abstencion. No se usan como estimador
+principal. Ver `docs/NOTA_KALMAN_D4.md`.
+
+## Verificacion de colinealidad
+
+Revision 2026-06-23:
+
+- `tipologia_d2` GVIF = 2,24;
+- `alta_exposicion` GVIF = 1,35.
+
+Hay correlacion entre variables, pero no colinealidad grave bajo umbrales
+convencionales (preocupacion: VIF > 5; grave: VIF > 10).
+
+## Variables usadas para construir D2
+
+Verificado contra el codigo fuente real:
+
+```text
+scripts/03_clasificacion_territorial/01_tipologia_municipal.R
+```
+
+Variables y transformaciones:
+
+| Variable | Transformacion antes de k-means |
+|---|---|
+| `coca_ha_media` | `log1p` |
+| `mineria_oro` | ninguna |
+| `mineria_ilegal_n` | `log1p` |
+| `mineria_carbon` | ninguna |
+| `oleoducto_km` | `log1p` |
+| `gasoducto_km` | `log1p` |
+| `hidrocarburos_campo` | ninguna |
+| `ga_cualquiera` | ninguna |
+| `ga_FARC_r` | ninguna |
+| `ga_ELN` | ninguna |
+| `ga_CDG` | ninguna |
+| `acled_pt_media` | `log1p` |
+| `homicidios_media` | `log1p` |
+| `n_lideres_total` | `log1p` |
+
+Despues de transformar las variables sesgadas se estandarizan con `scale()` y se
+aplica k-means con k = 5.
+
+## Implicacion para controles
+
+De los controles disponibles en `voto_fusil`, `ha_coca` esta parcialmente
+relacionada con D2 porque D2 incluye `coca_ha_media`. `pdet` no esta literalmente
+en D2, pero puede estar correlacionado con presencia historica FARC y coca.
+
+Por eso la matriz de robustez focal usa como controles principales:
+
+- `ipm_dnp`;
+- `cat_ruralidad`.
+
+Estos controles son mas externos a D2 que coca y PDET.

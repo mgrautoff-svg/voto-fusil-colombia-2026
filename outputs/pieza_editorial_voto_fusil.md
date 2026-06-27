@@ -1,4 +1,4 @@
-﻿# No es voto fusil. Es voto pistola con silenciador.
+# No es voto fusil. Es voto pistola con silenciador.
 
 ## 1. La acusación
 
@@ -39,3 +39,4 @@ La pregunta para el nuevo gobierno no es únicamente quién presionó a quién e
 ---
 
 Fuente y construcción: Manfred Grautoff · Sistema E4, Registraduría, ACLED, UNODC
+
