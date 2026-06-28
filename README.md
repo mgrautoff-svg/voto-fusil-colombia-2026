@@ -1,5 +1,7 @@
 # Voto Fusil — Colombia 2026 / voto-fusil-colombia-2026
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE) ![R](https://img.shields.io/badge/R-%3E%3D4.0-276DC3) ![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-deployed-brightgreen)
+
 Español | English
 
 ## Resumen
@@ -7,6 +9,8 @@ Español | English
 Este subproyecto acompaña el análisis periodístico "Voto fusil vs. voto pistola" publicado en La Silla Vacía: https://www.lasillavacia.com/red-de-expertos/red-de-la-paz/voto-fusil-colombia-2026/.
 
 Propuesta: reproducir el pipeline de análisis y las visualizaciones utilizadas en la pieza. Este repositorio contiene los scripts R del subproyecto, los outputs (tablas, mapas, gráficos) y pruebas que validan resultados básicos.
+
+**Topics sugeridos (inclúyalos en GitHub Topics para mejorar visibilidad):** Colombia, elecciones-2026, seguridad, voto-fusil, periodismo-datos, reproducibilidad
 
 ## Summary
 
